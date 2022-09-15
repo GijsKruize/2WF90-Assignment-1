@@ -4,11 +4,11 @@
 # solve.py
 #
 #
-# Group number:
+# Group number: 31
 # group_number 
 #
 # Author names and student IDs:
-# author_name_1 (author_student_ID_1) 
+# Gijs Kruize (1658662) 
 # author_name_2 (author_student_ID_2)
 # author_name_3 (author_student_ID_3)
 # author_name_4 (author_student_ID_4)
@@ -40,14 +40,31 @@ def solve_exercise(exercise_location : str, answer_location : str):
         elif exercise["operation"] == "subtraction":
             # Solve integer arithmetic subtraction exercise
             pass
-        # et cetera
+        elif exercise["operation"] == "multiplication_primary":
+            # Solve integer arithmetic primary multiplication exercise
+            pass
+        elif exercise["operation"] == "multiplication_karatsuba":
+            # Solve integer arithmetic karatsuba multiplication exercise
+            pass
+        elif exercise["operation"] == "extended_euclidean_algorithm":
+            # Solve integer arithmetic extended euclidean algorithm exercise
+            pass
+
     else: # exercise["type"] == "modular_arithmetic"
         # Check what operation within the modular arithmetic operations we need to 
 
-        if exercise["operation"] == "reduction":
+        if exercise["operation"] == "addition":
             # Solve modular arithmetic reduction exercise
             pass
-        # et cetera
+        elif exercise["operation"] == "subtraction":
+            pass
+        elif exercise["operation"] == "multiplication":
+            pass
+        elif exercise["operation"] == "reduction":
+            pass
+        elif exercise["operation"] == "inversion":
+            pass
+
     # Open file at answer_location for writing, creating the file if it does not 
 
     # (and overwriting it if it does already exist).
