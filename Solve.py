@@ -9,7 +9,7 @@
 #
 # Author names and student IDs:
 # Gijs Kruize (1658662) 
-# author_name_2 (author_student_ID_2)
+# Christian Groothuis 1715534
 # author_name_3 (author_student_ID_3)
 # author_name_4 (author_student_ID_4)
 ##
