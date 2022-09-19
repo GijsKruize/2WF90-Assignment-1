@@ -1,4 +1,5 @@
 from solver.solve import solve_from_file
+import json
 
 
 def assert_exercise(kind: str, exercise: int):
