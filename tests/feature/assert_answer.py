@@ -1,0 +1,9 @@
+from solver.solve import *
+
+
+def assert_exercise(kind: str, exercise: int):
+    answer = solve_from_file(
+        f"tests/feature/data/{kind}/input/exercise{exercise}.json")
+
+    with open(f"tests/feature/data/{kind}/output/answer{exercise}.json", "r") as answer_file:
+        assert answer == json.load(answer_file)

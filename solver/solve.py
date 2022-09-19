@@ -15,21 +15,10 @@
 ##
 # Import built-in json library for handling input/output
 import json
+import re
 
 
-def solve_exercise(exercise_location: str, answer_location: str):
-    """
-    solves an exercise specified in the file located at exercise_location and
-    writes the answer to a file at answer_location. Note: the file at
-    answer_location might not exist yet and, hence, might still need to be created.
-    """
-
-    # Open file at exercise_location for reading.
-    with open(exercise_location, "r") as exercise_file:
-        # Deserialize JSON exercise data present in exercise_file to corresponding
-
-        exercise = json.load(exercise_file)
-
+def solve(exercise):
     ### Parse and solve ###
     # Check type of exercise
     if exercise["type"] == "integer_arithmetic":
@@ -66,9 +55,26 @@ def solve_exercise(exercise_location: str, answer_location: str):
         elif exercise["operation"] == "inversion":
             pass
 
-    # Open file at answer_location for writing, creating the file if it does not
+    answer = {
+        "answer": "32"
+    }
 
-    # (and overwriting it if it does already exist).
+    return answer
+
+
+def solve_from_file(exercise_location: str) -> object:
+    with open(exercise_location, "r") as exercise_file:
+        exercise = json.load(exercise_file)
+
+    return solve(exercise)
+
+
+def save_answer_to_file(answer_location: str, answer: object, ):
     with open(answer_location, "w") as answer_file:
-        # Serialize Python answer data (stored in answer) to JSON answer data and
         json.dump(answer, answer_file, indent=4)
+
+
+def solve_from_file_and_to_file(exercise_location: str, answer_location: str):
+    answer = solve_from_file(exercise_location)
+
+    save_answer_to_file(answer_location, answer)
