@@ -55,6 +55,7 @@ def solve(exercise):
         elif exercise["operation"] == "inversion":
             pass
 
+    # Sample answer
     answer = {
         "answer": "32"
     }
