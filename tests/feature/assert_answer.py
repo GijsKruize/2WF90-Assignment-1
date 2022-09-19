@@ -1,4 +1,4 @@
-from solver.solve import *
+from solver.solve import solve_from_file
 
 
 def assert_exercise(kind: str, exercise: int):
