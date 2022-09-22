@@ -1,4 +1,3 @@
-from solver.solve import *
 from .assert_answer import assert_exercise
 
 
