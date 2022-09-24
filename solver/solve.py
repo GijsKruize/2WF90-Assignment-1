@@ -15,7 +15,6 @@
 ##
 # Import built-in json library for handling input/output
 import json
-import re
 
 
 def solve(exercise):
@@ -38,7 +37,7 @@ def solve(exercise):
             pass
         elif exercise["operation"] == "extended_euclidean_algorithm":
             # Solve integer arithmetic extended euclidean algorithm exercise
-            pass
+            return {"answer": ""}
 
     else:  # exercise["type"] == "modular_arithmetic"
         # Check what operation within the modular arithmetic operations we need to
@@ -55,13 +54,6 @@ def solve(exercise):
         elif exercise["operation"] == "inversion":
             pass
 
-    # Sample answer
-    answer = {
-        "answer": "32"
-    }
-
-    return answer
-
 
 def solve_from_file(exercise_location: str) -> object:
     with open(exercise_location, "r") as exercise_file:
@@ -70,12 +62,12 @@ def solve_from_file(exercise_location: str) -> object:
     return solve(exercise)
 
 
-def save_answer_to_file(answer_location: str, answer: object, ):
+def save_answer_to_file(answer_location: str, answer: object):
     with open(answer_location, "w") as answer_file:
         json.dump(answer, answer_file, indent=4)
 
 
-def solve_from_file_and_to_file(exercise_location: str, answer_location: str):
+def solve_exercise(exercise_location: str, answer_location: str):
     answer = solve_from_file(exercise_location)
 
     save_answer_to_file(answer_location, answer)
