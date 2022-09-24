@@ -16,42 +16,54 @@
 # Import built-in json library for handling input/output
 import json
 
+from euclidian.int_euclidian import extended_euclidian
+
 
 def solve(exercise):
     ### Parse and solve ###
+    x = exercise["x"]
+    y = exercise["y"]
+    radix = exercise["radix"]
+    operation = exercise["operation"]
+
     # Check type of exercise
     if exercise["type"] == "integer_arithmetic":
         # Check what operation within the integer arithmetic operations we need to
 
-        if exercise["operation"] == "addition":
+        if operation == "addition":
             # Solve integer arithmetic addition exercise
             pass
-        elif exercise["operation"] == "subtraction":
+        elif operation == "subtraction":
             # Solve integer arithmetic subtraction exercise
             pass
-        elif exercise["operation"] == "multiplication_primary":
+        elif operation == "multiplication_primary":
             # Solve integer arithmetic primary multiplication exercise
             pass
-        elif exercise["operation"] == "multiplication_karatsuba":
+        elif operation == "multiplication_karatsuba":
             # Solve integer arithmetic karatsuba multiplication exercise
             pass
-        elif exercise["operation"] == "extended_euclidean_algorithm":
-            # Solve integer arithmetic extended euclidean algorithm exercise
-            return {"answer": ""}
+        elif operation == "extended_euclidean_algorithm":
+            gcd, answer_a, answer_b = extended_euclidian(radix, x, y)
+
+            return {
+                "answer-a": answer_a,
+                "answer-b": answer_b,
+                "answer-gcd": gcd,
+            }
 
     else:  # exercise["type"] == "modular_arithmetic"
         # Check what operation within the modular arithmetic operations we need to
 
-        if exercise["operation"] == "addition":
+        if operation == "addition":
             # Solve modular arithmetic reduction exercise
             pass
-        elif exercise["operation"] == "subtraction":
+        elif operation == "subtraction":
             pass
-        elif exercise["operation"] == "multiplication":
+        elif operation == "multiplication":
             pass
-        elif exercise["operation"] == "reduction":
+        elif operation == "reduction":
             pass
-        elif exercise["operation"] == "inversion":
+        elif operation == "inversion":
             pass
 
 
