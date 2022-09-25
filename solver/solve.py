@@ -59,6 +59,7 @@ def solve(exercise):
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
             pass
+
         elif operation == "subtraction":
             pass
         elif operation == "multiplication":
