@@ -15,59 +15,59 @@
 ##
 # Import built-in json library for handling input/output
 import json
-import re
+
+from euclidian.int_euclidian import extended_euclidian
+from multiply.mod_multiplication import mod_multiplication
 
 
 def solve(exercise):
     ### Parse and solve ###
+    x = exercise["x"]
+    y = exercise["y"]
+    radix = exercise["radix"]
+    operation = exercise["operation"]
+
     # Check type of exercise
     if exercise["type"] == "integer_arithmetic":
         # Check what operation within the integer arithmetic operations we need to
 
-        if exercise["operation"] == "addition":
+        if operation == "addition":
             # Solve integer arithmetic addition exercise
             pass
-
-        #Niels
-        elif exercise["operation"] == "mod_subtraction.py":
-            # Solve integer arithmetic mod_subtraction.py exercise
+        elif operation == "subtraction":
+            # Solve integer arithmetic subtraction exercise
             pass
-        elif exercise["operation"] == "multiplication_primary":
+        elif operation == "multiplication_primary":
             # Solve integer arithmetic primary multiplication exercise
             pass
-
-        elif exercise["operation"] == "multiplication_karatsuba":
+        elif operation == "multiplication_karatsuba":
             # Solve integer arithmetic karatsuba multiplication exercise
             pass
-        elif exercise["operation"] == "extended_euclidean_algorithm":
-            # Solve integer arithmetic extended euclidean algorithm exercise
-            pass
+        elif operation == "extended_euclidean_algorithm":
+            gcd, answer_a, answer_b = extended_euclidian(radix, x, y)
 
-    else:  # exercise["type"] == "modular_arithmetic"
+            return {
+                "answer-a": answer_a,
+                "answer-b": answer_b,
+                "answer-gcd": gcd,
+            }
+
+    elif exercise["type"] == "modular_arithmetic":
+        modulus = exercise["modulus"]
+
         # Check what operation within the modular arithmetic operations we need to
-
-        if exercise["operation"] == "addition":
+        if operation == "addition":
             # Solve modular arithmetic reduction exercise
             pass
 
-        #Niels
-        elif exercise["operation"] == "mod_subtraction.py":
+        elif operation == "subtraction":
             pass
-        elif exercise["operation"] == "multiplication":
+        elif operation == "multiplication":
+            return {"answer": mod_multiplication(radix, x, y, modulus)}
+        elif operation == "reduction":
             pass
-        elif exercise["operation"] == "reduction":
+        elif operation == "inversion":
             pass
-
-        #Niels
-        elif exercise["operation"] == "inversion":
-            pass
-
-    # Sample answer
-    answer = {
-        "answer": "32"
-    }
-
-    return answer
 
 
 def solve_from_file(exercise_location: str) -> object:
@@ -77,12 +77,12 @@ def solve_from_file(exercise_location: str) -> object:
     return solve(exercise)
 
 
-def save_answer_to_file(answer_location: str, answer: object, ):
+def save_answer_to_file(answer_location: str, answer: object):
     with open(answer_location, "w") as answer_file:
         json.dump(answer, answer_file, indent=4)
 
 
-def solve_from_file_and_to_file(exercise_location: str, answer_location: str):
+def solve_exercise(exercise_location: str, answer_location: str):
     answer = solve_from_file(exercise_location)
 
     save_answer_to_file(answer_location, answer)
