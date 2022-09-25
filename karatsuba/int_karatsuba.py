@@ -1,4 +1,4 @@
-from multiplication.int_multiplication import multiplication
+from multiply.int_multiplication import multiplication
 from addition.int_addition import addition
 from subtraction.int_addition import subtraction
 
@@ -17,7 +17,7 @@ def karatsuba(radix,x,y):
 
     # Multiply numbers with normal multiplication if not large enough
     if(len(x) < 2 | len(y) < 2):
-        return mulitplication(radix,x,y)
+        return multiplication(radix, x, y)
 
     # Split if numbers are large enough
     else:
