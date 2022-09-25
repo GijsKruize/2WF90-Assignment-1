@@ -1,5 +1,3 @@
-from add.int_addition import addition
-
 def gcdExtended(a, b):
     global x, y
 
@@ -19,16 +17,15 @@ def gcdExtended(a, b):
     x = y1 - (b // a) * x1
     y = x1
 
-    return gcd,x,y
+    return gcd, x, y
 
-def inversion(x,mod,radix):
 
-    g,x,y= gcdExtended(x, mod)
+def inversion(x, mod, radix):
+
+    g, x, y = gcdExtended(x, mod)
     if (g != 1):
-        answer= "not possible"
+        answer = "not possible"
         return answer
 
     else:
         if x < 0:
-
-

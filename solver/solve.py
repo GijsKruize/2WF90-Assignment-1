@@ -16,14 +16,10 @@
 # Import built-in json library for handling input/output
 import json
 
-from euclidian.int_euclidian import extended_euclidian
-from multiply.mod_multiplication import mod_multiplication
 
-
-def solve(exercise):
+def solve(exercise: object):
     ### Parse and solve ###
     x = exercise["x"]
-    y = exercise["y"]
     radix = exercise["radix"]
     operation = exercise["operation"]
 
@@ -34,17 +30,23 @@ def solve(exercise):
         if operation == "addition":
             # Solve integer arithmetic addition exercise
             pass
+
         elif operation == "subtraction":
-            # Solve integer arithmetic subtraction exercise
-            pass
+            from subtraction.int_subtraction import subtraction
+            return {"answer": subtraction(radix, x, exercise["y"])}
+
         elif operation == "multiplication_primary":
             # Solve integer arithmetic primary multiplication exercise
             pass
+
         elif operation == "multiplication_karatsuba":
             # Solve integer arithmetic karatsuba multiplication exercise
             pass
+
         elif operation == "extended_euclidean_algorithm":
-            gcd, answer_a, answer_b = extended_euclidian(radix, x, y)
+            from euclidian.int_euclidian import extended_euclidian
+            gcd, answer_a, answer_b = extended_euclidian(
+                radix, x, exercise["y"])
 
             return {
                 "answer-a": answer_a,
@@ -61,11 +63,17 @@ def solve(exercise):
             pass
 
         elif operation == "subtraction":
-            pass
+            from subtraction.mod_subtraction import mod_subtraction
+            return {"answer": mod_subtraction(radix, x, exercise["y"], exercise["modulus"])}
+
         elif operation == "multiplication":
-            return {"answer": mod_multiplication(radix, x, y, modulus)}
+            from multiply.mod_multiplication import mod_multiplication
+            return {"answer": mod_multiplication(radix, x, modulus)}
+
         elif operation == "reduction":
-            pass
+            from reduction.mod_reduction import mod_reduction
+            return {"answer": mod_reduction(radix, x, modulus)}
+
         elif operation == "inversion":
             pass
 
