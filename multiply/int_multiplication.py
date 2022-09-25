@@ -5,13 +5,13 @@ from math import floor
 from helpers import *
 
 
-def multiplication(radix, x, y):
+def multiplication(radix: int, x: str, y: str):
     # Zero times something is still zero.
     if (x == "0" or y == "0"):
         return "0"
 
-    #check if the input x and y have a minus sign in front of them. If both of them have one, the result won't have one.
-    #If one of them has one the result will be calculated without the minus and the answer will change sign.
+    # check if the input x and y have a minus sign in front of them. If both of them have one, the result won't have one.
+    # If one of them has one the result will be calculated without the minus and the answer will change sign.
     if (x.startswith("-") and y.startswith("-")):
         # A negative number (`x`) times another negative number (`y`) is positive.
         return multiplication(radix, x[1:], y[1:])
@@ -70,3 +70,16 @@ def multiplication(radix, x, y):
     # Return the answer, the number of elementary additions, and the number of
     # elementary multiplications.
     return result
+
+
+# def multiplication(radix: int, x: str, y: str) -> str:
+#     m = len(x)
+#     n = len(y)
+
+#     z = ["0"] * (m + n - 1)
+
+#     for i in range(m - 1):
+#         c = 0
+
+#         for j in range(n - 1):
+#             z
