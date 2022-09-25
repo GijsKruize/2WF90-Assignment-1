@@ -1,34 +1,17 @@
 from add.int_addition import addition
+from euclidian.int_euclidian import extended_euclidian
+from mod_reduce import mod_reduce
 
-def gcdExtended(a, b):
-    global x, y
+def inversion(radix,x,mod):
 
-    # Base Case
-    if (a == 0):
-        x = 0
-        y = 1
-        return b
-
-    # To store results of recursive call
-    gcd = gcdExtended(b % a, a)
-    x1 = x
-    y1 = y
-
-    # Update x and y using results of recursive
-    # call
-    x = y1 - (b // a) * x1
-    y = x1
-
-    return gcd,x,y
-
-def inversion(x,mod,radix):
-
-    g,x,y= gcdExtended(x, mod)
+    g,a,y= extended_euclidian(radix,x, mod)
     if (g != 1):
-        answer= "not possible"
+        answer= "inverse does not exist"
         return answer
 
     else:
-        if x < 0:
-
+        a = mod_reduce(radix, a, mod)
+        if a < 0:
+            a=addition(radix,a,mod)
+            return a
 
