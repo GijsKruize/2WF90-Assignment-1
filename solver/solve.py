@@ -10,7 +10,7 @@
 # Author names and student IDs:
 # Gijs Kruize (1658662)
 # Christian Groothuis (1715534)
-# author_name_3 (author_student_ID_3)
+# Jordy Verhoeven (1001249)
 # author_name_4 (author_student_ID_4)
 ##
 # Import built-in json library for handling input/output
