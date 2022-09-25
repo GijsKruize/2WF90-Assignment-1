@@ -15,6 +15,7 @@
 ##
 # Import built-in json library for handling input/output
 import json
+from re import I
 
 
 def solve(exercise: object):
@@ -29,22 +30,21 @@ def solve(exercise: object):
 
         if operation == "addition":
             # Solve integer arithmetic addition exercise
-            result = addition(radix, x, y)
-            return {
-                "answer": result
-            }
+            from add.int_addition import addition
+            result = addition(radix, x, exercise["y"])
+            return {"answer": result}
 
         elif operation == "subtraction":
             from subtraction.int_subtraction import subtraction
             return {"answer": subtraction(radix, x, exercise["y"])}
 
         elif operation == "multiplication_primary":
-            # Solve integer arithmetic primary multiplication exercise
-            pass
+            from multiply.int_multiplication import multiplication
+            return {"answer": multiplication(radix, x, exercise["y"])}
 
         elif operation == "multiplication_karatsuba":
-            # Solve integer arithmetic karatsuba multiplication exercise
-            pass
+            from karatsuba.int_karatsuba import karatsuba
+            return {"answer": karatsuba(radix, x, exercise["y"])}
 
         elif operation == "extended_euclidean_algorithm":
             from euclidian.int_euclidian import extended_euclidian
@@ -63,21 +63,25 @@ def solve(exercise: object):
         # Check what operation within the modular arithmetic operations we need to
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
-            pass
+            from add.int_addition import addition
+
+            return {"answer": addition(radix, x, exercise["y"])}
         elif operation == "subtraction":
             from subtraction.mod_subtraction import mod_subtraction
             return {"answer": mod_subtraction(radix, x, exercise["y"], exercise["modulus"])}
 
         elif operation == "multiplication":
             from multiply.mod_multiplication import mod_multiplication
-            return {"answer": mod_multiplication(radix, x, modulus)}
+            return {"answer": mod_multiplication(radix, x, exercise["y"], modulus)}
 
         elif operation == "reduction":
             from reduction.mod_reduction import mod_reduction
             return {"answer": mod_reduction(radix, x, modulus)}
 
         elif operation == "inversion":
-            pass
+            from inverse.inversion import inversion
+
+            # return {"answer": inversion(radix, x, exercise["y"])}
 
 
 def solve_from_file(exercise_location: str) -> object:
