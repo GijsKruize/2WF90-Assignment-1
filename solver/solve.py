@@ -17,6 +17,7 @@
 import json
 
 from euclidian.int_euclidian import extended_euclidian
+from multiply.mod_multiplication import mod_multiplication
 
 
 def solve(exercise):
@@ -51,16 +52,17 @@ def solve(exercise):
                 "answer-gcd": gcd,
             }
 
-    else:  # exercise["type"] == "modular_arithmetic"
-        # Check what operation within the modular arithmetic operations we need to
+    elif exercise["type"] == "modular_arithmetic":
+        modulus = exercise["modulus"]
 
+        # Check what operation within the modular arithmetic operations we need to
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
             pass
         elif operation == "subtraction":
             pass
         elif operation == "multiplication":
-            pass
+            return {"answer": mod_multiplication(radix, x, y, modulus)}
         elif operation == "reduction":
             pass
         elif operation == "inversion":
