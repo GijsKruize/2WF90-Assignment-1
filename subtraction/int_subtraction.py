@@ -76,11 +76,13 @@ def subtraction(radix: int, x: str, y: str) -> str:
         return answer
 
     elif y.startswith('-'):
-        #        answer = addition(radix,x, y.replace('-', ''))
+        from add.int_addition import addition
+        answer = addition(radix, x, y.replace('-', ''))
         return answer
 
     elif x.startswith('-'):
-        #        answer = addition(radix, x.replace('-', ''), y)
+        from add.int_addition import addition
+        answer = addition(radix, x.replace('-', ''), y)
         return '-' + answer
     else:
 
