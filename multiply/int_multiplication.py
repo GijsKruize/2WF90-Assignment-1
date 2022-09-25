@@ -1,85 +1,40 @@
-# TODO delete substition for unfinished work for running tests
-
-from math import floor
-
-from helpers import *
+from subtraction.int_subtraction import *
 
 
-def multiplication(radix: int, x: str, y: str):
-    # Zero times something is still zero.
-    if (x == "0" or y == "0"):
-        return "0"
+def multiplication(radix: int, x: str, y: str) -> str:
+    minus = ''
+    if x.startswith('-') or y.startswith('-'):
+        if not (x.startswith('-') and y.startswith('-')):
+            minus = '-'
 
-    # check if the input x and y have a minus sign in front of them. If both of them have one, the result won't have one.
-    # If one of them has one the result will be calculated without the minus and the answer will change sign.
-    if (x.startswith("-") and y.startswith("-")):
-        # A negative number (`x`) times another negative number (`y`) is positive.
-        return multiplication(radix, x[1:], y[1:])
-    elif (x.startswith("-")):
-        # A negative number (`x`) times a positive number (`y`) is the same as
-        # a positive number times a positive number and inverting the sign.
-        outcome = multiplication(radix, x[1:], y)
-        return "-" + outcome
-    elif (y.startswith("-")):
-        # A positive number (`x`) times a negative number(`x`) is the same as
-        # a positive number times a positive number and inverting the sign.
-        outcome = multiplication(radix, x, y[1:])
-        return "-" + outcome
+        y = y.replace('-', '')
+        x = x.replace('-', '')
 
-    # Now the multiplication part starts with two positive numbers 'x' and 'y'
-    # Initialization
-    m = len(x)
-    n = len(y)
-
-    # Create an array which holds the answer, it has one extra cell for a
-    # possible carry-out.
-    z = ["0"] * (m + n)
-    count_add = 0
-    count_mul = 0
-
-    # Reverse `x` and `y` to accomodate for reversed indexing in algorith.
     x = x[::-1]
     y = y[::-1]
 
-    for i in range(m):
+    max_x = len(x)
+    max_y = len(y)
+    answer = [0] * (len(x)+len(y))
+    for i in range(0, max_x):
         carry = 0
+        for j in range(0, max_y):
+            digitx = convert_from_hex(x[i])
+            digitY = convert_from_hex(y[j])
 
-        for j in range(n):
-            # Determine the expected value of the "character" multiplication.
-            expected_word = get_key(z[i + j]) + \
-                (get_key(x[i]) * get_key(y[j])) + carry
-            count_add += 2
-            count_mul += 1
+            t = int(convert_from_hex(answer[i + j])) + \
+                int(digitx) * int(digitY) + carry
+            carry = int(t / radix)
+            answer[i + j] = str(convert_to_hex(t - (carry * radix)))
 
-            # Determine the `carry`, `expected_word` is never larger than 32 bits
-            # thus we can use elementary division.
-            carry = floor(expected_word / radix)
+        answer[i + max_y] = str(convert_to_hex(carry))
 
-            # Subtract what is too much.
-            z[i + j] = get_representation(expected_word - (carry * radix))
-            count_mul += 1
-        # And carry-out.
-        z[i + n] = get_representation(carry)
+    if answer[max_y + max_x - 1] == "0":
+        k = max_y + max_x
+    else:
+        k = max_y + max_x
 
-    # Reverse string and strip any leading zero (carry-out). If the string is
-    # empty, make the string a zero ("0").
-    result = (''.join(i for i in z[::-1])).lstrip("0")
-    if (len(result) == 0):
-        result = "0"
-
-    # Return the answer, the number of elementary additions, and the number of
-    # elementary multiplications.
-    return result
-
-
-# def multiplication(radix: int, x: str, y: str) -> str:
-#     m = len(x)
-#     n = len(y)
-
-#     z = ["0"] * (m + n - 1)
-
-#     for i in range(m - 1):
-#         c = 0
-
-#         for j in range(n - 1):
-#             z
+    answer = answer[:k]
+    answer = answer[::-1]
+    answer = ''.join(answer)
+    return minus + answer.lstrip("0")
