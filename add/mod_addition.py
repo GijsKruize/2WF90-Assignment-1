@@ -6,6 +6,9 @@ from subtraction.int_subtraction import subtraction
 
 
 def mod_addition(radix, x, y, m):
+    if (m == "0"):
+        return None
+
     x = mod_reduction(radix, x, m)
     y = mod_reduction(radix, y, m)
 

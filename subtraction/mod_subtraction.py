@@ -3,6 +3,9 @@ from reduction.mod_reduction import mod_reduction
 
 
 def mod_subtraction(radix: int, x: str, y: str, m: str) -> str:
+    if (m == "0"):
+        return None
+
     x = mod_reduction(radix, x, m)
     y = mod_reduction(radix, y, m)
     z = subtraction(radix, x, y)
