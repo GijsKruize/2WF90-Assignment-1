@@ -10,7 +10,7 @@
 # Author names and student IDs:
 # Gijs Kruize (1658662)
 # Christian Groothuis (1715534)
-# author_name_3 (author_student_ID_3)
+# Jordy Verhoeven (1001249)
 # author_name_4 (author_student_ID_4)
 ##
 # Import built-in json library for handling input/output
@@ -18,9 +18,11 @@ import json
 
 from euclidian.int_euclidian import extended_euclidian
 from multiply.mod_multiplication import mod_multiplication
+from add.int_addition import addition
 
 
 def solve(exercise):
+    answer = {}
     ### Parse and solve ###
     x = exercise["x"]
     y = exercise["y"]
@@ -33,6 +35,10 @@ def solve(exercise):
 
         if operation == "addition":
             # Solve integer arithmetic addition exercise
+            result = addition(radix, x, y)
+            return {
+                "answer": result
+            }
             pass
         elif operation == "subtraction":
             # Solve integer arithmetic subtraction exercise
@@ -59,7 +65,6 @@ def solve(exercise):
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
             pass
-
         elif operation == "subtraction":
             pass
         elif operation == "multiplication":
