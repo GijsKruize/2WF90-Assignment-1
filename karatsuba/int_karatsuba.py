@@ -22,7 +22,7 @@ def karatsuba(radix, x, y):
     # Split if numbers are large enough
     else:
         max_len = max(len(x), len(y))
-        half_len = max_len / 2
+        half_len = int(max_len / 2)
 
         # Split the numbers in a high and a low part
         x_hi = x[:-half_len]
