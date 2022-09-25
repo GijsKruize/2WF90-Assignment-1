@@ -74,11 +74,11 @@ def subtraction(radix,x,y):
         return answer
 
     elif y.startswith('-'):
-#        answer = addition(radix,x, y.replace('-', ''))
+        answer = addition(radix,x, y.replace('-', ''))
         return answer
 
     elif x.startswith('-'):
-#        answer = addition(radix, x.replace('-', ''), y)
+        answer = addition(radix, x.replace('-', ''), y)
         return '-' + answer
     else:
 
