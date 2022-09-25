@@ -1,6 +1,6 @@
 from typing import Tuple
 from helpers import absolute, is_at_least_zero, is_positive, division_with_remainder
-from multiplication.int_multiplication import multiplication
+from multiply.int_multiplication import multiplication
 from subtraction.int_subtraction import subtraction
 
 
