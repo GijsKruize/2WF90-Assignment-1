@@ -1,4 +1,4 @@
-from .assert_answer import assert_exercise
+from tests.feature.assert_answer import assert_exercise
 
 
 def test_realistic_exercise_1():

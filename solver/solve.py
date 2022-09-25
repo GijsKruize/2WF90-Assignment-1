@@ -18,7 +18,6 @@ import json
 
 from euclidian.int_euclidian import extended_euclidian
 from multiply.mod_multiplication import mod_multiplication
-
 from add.int_addition import addition
 
 
