@@ -1,6 +1,7 @@
 from typing import Tuple
 from helpers import *
 from karatsuba.int_karatsuba import karatsuba
+from multiply.int_multiplication import multiplication
 from subtraction.int_subtraction import subtraction
 
 
@@ -19,8 +20,8 @@ def extended_euclidian(radix: int, a: str, b: str) -> Tuple[str, str, str]:
         a_prime = b_prime
         b_prime = r
 
-        x_3 = subtraction(radix, x_1, karatsuba(radix, q, x_2))
-        y_3 = subtraction(radix, y_1, karatsuba(radix, q, y_2))
+        x_3 = subtraction(radix, x_1, multiplication(radix, q, x_2))
+        y_3 = subtraction(radix, y_1, multiplication(radix, q, y_2))
 
         x_1 = x_2
         y_1 = y_2
@@ -37,6 +38,9 @@ def extended_euclidian(radix: int, a: str, b: str) -> Tuple[str, str, str]:
 
 
 def long_division(radix: int, x: str, y: str) -> Tuple[str, str]:
+    if remove_leading_zeros(absolute(y)) == "0":
+        raise ZeroDivisionError()
+
     q = ""
     r = ""
 
@@ -53,13 +57,12 @@ def long_division(radix: int, x: str, y: str) -> Tuple[str, str]:
         # else add a 0 to basically multiply by the radix
         if (is_at_least_zero(subtraction(radix, r, y))):
             # Calculate how often y fits into r
-            largest_q = largest_quotient(radix, r, y)
+            largest_q = division_count(radix, r, y)
             # Append this largest quotient to q
             q = q + largest_q
 
             # Calculate the current remainder by multipying y by the
             # largest quotient and then subtracting that from the current position in x
-            temp = karatsuba(radix, y, largest_q)
             r = subtraction(radix, r, karatsuba(radix, y, largest_q))
         else:
             # if we cannot divide, add a 0 to basically multiply q by the radix
@@ -74,7 +77,7 @@ def long_division(radix: int, x: str, y: str) -> Tuple[str, str]:
 
 
 # Calculate how many times you can divide y by r
-def largest_quotient(radix: int, r: str, y: str) -> str:
+def division_count(radix: int, r: str, y: str) -> str:
     from add.int_addition import addition
     q_prime = 0
     y_prime = "0"
