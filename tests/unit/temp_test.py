@@ -1,6 +1,5 @@
 from euclidian.int_euclidian import division_count, long_division
 from add.int_addition import addition
-from add.int_additionJORDY import addition as add_jordy
 from solver.solve import solve
 
 
@@ -53,10 +52,3 @@ def test_addition():
     assert "11001011011110" == addition(2, "11001001100100", "1111010")
     assert "347" == addition(8, "155", "172")
     assert "E7" == addition(16, "6D", "7A")
-
-
-# def test_addition_jordy():
-#     assert "13022" == add_jordy(10, "12900", "122")
-#     assert "11001011011110" == add_jordy(2, "11001001100100", "1111010")
-#     assert "347" == add_jordy(8, "155", "172")
-#     assert "E7" == add_jordy(16, "6D", "7A")
