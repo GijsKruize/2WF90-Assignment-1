@@ -43,8 +43,8 @@ def solve(exercise: object):
             pass
 
         elif operation == "multiplication_karatsuba":
-            # Solve integer arithmetic karatsuba multiplication exercise
-            pass
+            from karatsuba.int_karatsuba import karatsuba
+            return {"answer": karatsuba(radix, x, exercise["y"])}
 
         elif operation == "extended_euclidean_algorithm":
             from euclidian.int_euclidian import extended_euclidian
@@ -62,8 +62,9 @@ def solve(exercise: object):
 
         # Check what operation within the modular arithmetic operations we need to
         if operation == "addition":
-            # Solve modular arithmetic reduction exercise
-            pass
+            from add.mod_addition import mod_addition
+            return {"answer": mod_addition(radix, x, exercise["y"], exercise["modulus"])}
+
         elif operation == "subtraction":
             from subtraction.mod_subtraction import mod_subtraction
             return {"answer": mod_subtraction(radix, x, exercise["y"], exercise["modulus"])}
