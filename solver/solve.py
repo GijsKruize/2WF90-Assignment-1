@@ -17,8 +17,11 @@
 import json
 import re
 
+from add.int_addition import addition
+
 
 def solve(exercise):
+    answer = {}
     ### Parse and solve ###
     # Check type of exercise
     if exercise["type"] == "integer_arithmetic":
@@ -26,6 +29,10 @@ def solve(exercise):
 
         if exercise["operation"] == "addition":
             # Solve integer arithmetic addition exercise
+            result = addition(exercise["radix"], exercise["x"], exercise["y"])
+            answer = {
+                "answer": result
+            }
             pass
         elif exercise["operation"] == "subtraction":
             # Solve integer arithmetic subtraction exercise
@@ -54,11 +61,6 @@ def solve(exercise):
             pass
         elif exercise["operation"] == "inversion":
             pass
-
-    # Sample answer
-    answer = {
-        "answer": "32"
-    }
 
     return answer
 
