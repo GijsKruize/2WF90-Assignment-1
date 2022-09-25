@@ -63,9 +63,8 @@ def solve(exercise: object):
         # Check what operation within the modular arithmetic operations we need to
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
-            from add.int_addition import addition
-
-            return {"answer": addition(radix, x, exercise["y"])}
+            from add.mod_addition import mod_addition
+            return {"answer": mod_addition(radix, x, exercise["y"], exercise["modulus"])}
         elif operation == "subtraction":
             from subtraction.mod_subtraction import mod_subtraction
             return {"answer": mod_subtraction(radix, x, exercise["y"], exercise["modulus"])}
@@ -81,7 +80,7 @@ def solve(exercise: object):
         elif operation == "inversion":
             from inverse.inversion import inversion
 
-            # return {"answer": inversion(radix, x, exercise["y"])}
+            return {"answer": inversion(radix, x, exercise["modulus"])}
 
 
 def solve_from_file(exercise_location: str) -> object:
