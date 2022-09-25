@@ -8,10 +8,10 @@ def karatsuba(radix, x, y):
     neg_y = False
 
     # check the first character of the string for a "-" sign
-    if (x[0] == "-"):
+    if (len(x) > 0 and x[0] == "-"):
         neg_x = True
         x = x.strip("-")
-    if (y[0] == "-"):
+    if (len(y) > 0 and y[0] == "-"):
         neg_y = True
         y = y.strip("-")
 

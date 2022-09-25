@@ -15,7 +15,6 @@
 ##
 # Import built-in json library for handling input/output
 import json
-from re import I
 
 
 def solve(exercise: object):
