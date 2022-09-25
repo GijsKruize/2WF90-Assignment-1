@@ -1,8 +1,9 @@
 from subtraction.int_subtraction import subtraction
 from reduction.mod_reduction import mod_reduction
+from typing import Optional
 
 
-def mod_subtraction(radix: int, x: str, y: str, m: str) -> str:
+def mod_subtraction(radix: int, x: str, y: str, m: str) -> Optional[str]:
     if (m == "0"):
         return None
 
