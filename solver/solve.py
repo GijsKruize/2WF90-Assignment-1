@@ -11,7 +11,7 @@
 # Gijs Kruize (1658662)
 # Christian Groothuis (1715534)
 # Jordy Verhoeven (1001249)
-# author_name_4 (author_student_ID_4)
+# Niels Boonstra (1451294)
 ##
 # Import built-in json library for handling input/output
 import json
