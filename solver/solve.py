@@ -11,21 +11,15 @@
 # Gijs Kruize (1658662)
 # Christian Groothuis (1715534)
 # Jordy Verhoeven (1001249)
-# author_name_4 (author_student_ID_4)
+# Niels Boonstra (1451294)
 ##
 # Import built-in json library for handling input/output
 import json
 
-from euclidian.int_euclidian import extended_euclidian
-from multiply.mod_multiplication import mod_multiplication
-from add.int_addition import addition
 
-
-def solve(exercise):
-    answer = {}
+def solve(exercise: object):
     ### Parse and solve ###
     x = exercise["x"]
-    y = exercise["y"]
     radix = exercise["radix"]
     operation = exercise["operation"]
 
@@ -35,22 +29,26 @@ def solve(exercise):
 
         if operation == "addition":
             # Solve integer arithmetic addition exercise
-            result = addition(radix, x, y)
-            return {
-                "answer": result
-            }
-            pass
+            from add.int_addition import addition
+            result = addition(radix, x, exercise["y"])
+            return {"answer": result}
+
         elif operation == "subtraction":
-            # Solve integer arithmetic subtraction exercise
-            pass
+            from subtraction.int_subtraction import subtraction
+            return {"answer": subtraction(radix, x, exercise["y"])}
+
         elif operation == "multiplication_primary":
-            # Solve integer arithmetic primary multiplication exercise
-            pass
+            from multiply.int_multiplication import multiplication
+            return {"answer": multiplication(radix, x, exercise["y"])}
+
         elif operation == "multiplication_karatsuba":
-            # Solve integer arithmetic karatsuba multiplication exercise
-            pass
+            from karatsuba.int_karatsuba import karatsuba
+            return {"answer": karatsuba(radix, x, exercise["y"])}
+
         elif operation == "extended_euclidean_algorithm":
-            gcd, answer_a, answer_b = extended_euclidian(radix, x, y)
+            from euclidian.int_euclidian import extended_euclidian
+            gcd, answer_a, answer_b = extended_euclidian(
+                radix, x, exercise["y"])
 
             return {
                 "answer-a": answer_a,
@@ -64,15 +62,24 @@ def solve(exercise):
         # Check what operation within the modular arithmetic operations we need to
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
-            pass
+            from add.mod_addition import mod_addition
+            return {"answer": mod_addition(radix, x, exercise["y"], exercise["modulus"])}
         elif operation == "subtraction":
-            pass
+            from subtraction.mod_subtraction import mod_subtraction
+            return {"answer": mod_subtraction(radix, x, exercise["y"], exercise["modulus"])}
+
         elif operation == "multiplication":
-            return {"answer": mod_multiplication(radix, x, y, modulus)}
+            from multiply.mod_multiplication import mod_multiplication
+            return {"answer": mod_multiplication(radix, x, exercise["y"], modulus)}
+
         elif operation == "reduction":
-            pass
+            from reduction.mod_reduction import mod_reduction
+            return {"answer": mod_reduction(radix, x, modulus)}
+
         elif operation == "inversion":
-            pass
+            from inverse.inversion import inversion
+
+            return {"answer": inversion(radix, x, exercise["modulus"])}
 
 
 def solve_from_file(exercise_location: str) -> object:

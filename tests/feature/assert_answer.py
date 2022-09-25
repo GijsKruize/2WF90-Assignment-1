@@ -7,4 +7,5 @@ def assert_exercise(kind: str, exercise: int):
         f"tests/feature/data/{kind}/input/exercise{exercise}.json")
 
     with open(f"tests/feature/data/{kind}/output/answer{exercise}.json", "r") as answer_file:
-        assert answer == json.load(answer_file)
+        expected_answer = json.load(answer_file)
+        assert answer == expected_answer

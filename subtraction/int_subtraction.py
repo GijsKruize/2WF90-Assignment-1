@@ -1,17 +1,19 @@
-from add.int_addition import addition
+from helpers import *
 
-def bigger_y_than_x(x,y):
-    i=0
-    while i< len(x):
-        NumberX = convert_from_hex(x[i])
-        NumberY = convert_from_hex(y[i])
 
-        if NumberX>NumberY:
+def bigger_y_than_x(x, y):
+    i = 0
+    while i < len(x):
+        NumberX = get_key(x[i])
+        NumberY = get_key(y[i])
+
+        if NumberX > NumberY:
             return False
-        elif NumberY>NumberX:
+        elif NumberY > NumberX:
             return True
-        i=i+1
+        i = i+1
     return False
+
 
 def convert_from_hex(digit):
     if digit == 'A':
@@ -63,46 +65,48 @@ def convert_to_hex(digit):
         return str(digit)
 
 
-def subtraction(radix,x,y):
-    answer =''
+def subtraction(radix: int, x: str, y: str) -> str:
+    answer = ''
     minus = ''
-    if y=='0':
+    if y == '0':
         return x
 
     if x.startswith('-') and y.startswith('-'):
-        answer = subtraction(radix, y.replace('-', ''),x.replace('-', ''))
+        answer = subtraction(radix, y.replace('-', ''), x.replace('-', ''))
         return answer
 
     elif y.startswith('-'):
-#        answer = addition(radix,x, y.replace('-', ''))
+        from add.int_addition import addition
+        answer = addition(radix, x, y.replace('-', ''))
         return answer
 
     elif x.startswith('-'):
-#        answer = addition(radix, x.replace('-', ''), y)
+        from add.int_addition import addition
+        answer = addition(radix, x.replace('-', ''), y)
         return '-' + answer
     else:
 
         max_x = len(x)
         max_y = len(y)
         if max_x < max_y:
-            temp_x=x
-            x=y
-            y=temp_x
-            minus='-'
+            temp_x = x
+            x = y
+            y = temp_x
+            minus = '-'
 
         if max_x == max_y:
             if bigger_y_than_x(x, y):
                 temp_x = x
                 x = y
                 y = temp_x
-                minus='-'
+                minus = '-'
 
-        c=0
+        c = 0
         y = y.zfill(len(x))
-        i=len(x)
-        while i>0:
+        i = len(x)
+        while i > 0:
 
-            digit = convert_from_hex(x[i-1]) - convert_from_hex(y[i-1]) - c
+            digit = get_key(x[i-1]) - get_key(y[i-1]) - c
 
             if digit < 0:
                 c = 1
@@ -110,7 +114,6 @@ def subtraction(radix,x,y):
             else:
                 c = 0
 
-            answer = convert_to_hex(digit) + answer
-            i=i-1
+            answer = get_representation(digit) + answer
+            i = i-1
     return minus + answer.lstrip("0")
-
