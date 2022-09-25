@@ -10,7 +10,7 @@
 # Author names and student IDs:
 # Gijs Kruize (1658662)
 # Christian Groothuis (1715534)
-# author_name_3 (author_student_ID_3)
+# Jordy Verhoeven (1001249)
 # author_name_4 (author_student_ID_4)
 ##
 # Import built-in json library for handling input/output
@@ -29,7 +29,10 @@ def solve(exercise: object):
 
         if operation == "addition":
             # Solve integer arithmetic addition exercise
-            pass
+            result = addition(radix, x, y)
+            return {
+                "answer": result
+            }
 
         elif operation == "subtraction":
             from subtraction.int_subtraction import subtraction
@@ -61,7 +64,6 @@ def solve(exercise: object):
         if operation == "addition":
             # Solve modular arithmetic reduction exercise
             pass
-
         elif operation == "subtraction":
             from subtraction.mod_subtraction import mod_subtraction
             return {"answer": mod_subtraction(radix, x, exercise["y"], exercise["modulus"])}
