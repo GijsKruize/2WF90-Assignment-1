@@ -1,50 +1,41 @@
-from subtraction.int_subtraction import subtraction
+from subtraction.int_subtraction import *
 
 
-def addition(radix, x1, y1):
-    negative = False
-    if x1[0] == '-' and y1[0 == '-'] :
-        negative = True
-        x = x1[1:len(x1)]
-        y = y1[1:len(y1)]
-    elif x1[0] == '-':
-        return subtraction(radix, y1, x1[1:len(x1)])
-    elif y1[0] == '-':
-        return subtraction(radix, x1, y1[1:len(y1)])
-    else :
-        x = x1
-        y = y1
+def addition(radix: int, x: str, y: str) -> str:
+    answer = ''
+    if y == '0':
+        return x
 
-    c = 0
-    z = []
-    x_rev = x[::-1]
-    y_rev = y[::-1]
-    max_len = max(len(x), len(y))
-    if len(x) - max_len > 0:
-        zeroes = len(x) - max_len
-        for i in range(zeroes):
-            x_rev = x_rev + '0'
-    elif len(y) - max_len > 0:
-        zeroes = len(y) - max_len
-        for i in range(zeroes):
-            y_rev = y_rev + '0'
-    for i in range(max_len):
-        z.append(str(int(x_rev[i]) + int(y_rev[i]) + c))
-        if int(z[i]) >= int(radix):
-            z[i] = int(z[i]) - int(radix)
-            c = 1
-        else:
-            c = 0
-    k = 0
-    if c == 1:
-        k = max_len + 1
-        z[k - 1] = 1
+    if x.startswith('-') and y.startswith('-'):
+        answer = addition(radix, x.replace('-', ''), y.replace('-', ''))
+        return '-' + answer
+
+    elif x.startswith('-'):
+        answer = subtraction(radix, y, x.replace('-', ''))
+        return answer
+
+    elif y.startswith('-'):
+        answer = subtraction(radix, x, y.replace('-', ''))
+        return answer
     else:
-        k = max_len
-    stringz = ''
-    for i in z:
-        stringz = stringz + str(i)
-    stringz = stringz[::-1]
-    if negative:
-        stringz = '-' + stringz
-    return stringz[0:k]
+        supermax_33 = max(len(x), len(y))
+        x = x.zfill(supermax_33)
+        y = y.zfill(supermax_33)
+
+        c = 0
+        i = supermax_33
+        while i > 0:
+
+            digit = convert_from_hex(x[i-1]) + convert_from_hex(y[i-1]) + c
+
+            if digit >= radix:
+                c = 1
+                digit = digit - radix
+            else:
+                c = 0
+
+            answer = convert_to_hex(digit) + answer
+            i = i-1
+        if c == 1:
+            answer = '1' + answer
+    return answer.lstrip("0")
