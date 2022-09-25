@@ -1,5 +1,5 @@
 from reduction.mod_reduction import mod_reduction
-from multiplication.int_multiplication import multiplication
+from multiply.int_multiplication import multiplication
 
 
 def mod_multiplication(radix: int, x: str, y: str, modulus: str) -> str:

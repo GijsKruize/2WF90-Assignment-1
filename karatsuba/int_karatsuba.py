@@ -1,4 +1,4 @@
-from multiplication.int_multiplication import multiplication
+from multiply.int_multiplication import multiplication
 from addition.int_addition import addition
 from subtraction.int_addition import subtraction
 
