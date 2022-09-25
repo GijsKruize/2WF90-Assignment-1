@@ -27,12 +27,15 @@ def solve(exercise):
         if exercise["operation"] == "addition":
             # Solve integer arithmetic addition exercise
             pass
-        elif exercise["operation"] == "subtraction":
-            # Solve integer arithmetic subtraction exercise
+
+        #Niels
+        elif exercise["operation"] == "mod_subtraction.py":
+            # Solve integer arithmetic mod_subtraction.py exercise
             pass
         elif exercise["operation"] == "multiplication_primary":
             # Solve integer arithmetic primary multiplication exercise
             pass
+
         elif exercise["operation"] == "multiplication_karatsuba":
             # Solve integer arithmetic karatsuba multiplication exercise
             pass
@@ -46,12 +49,16 @@ def solve(exercise):
         if exercise["operation"] == "addition":
             # Solve modular arithmetic reduction exercise
             pass
-        elif exercise["operation"] == "subtraction":
+
+        #Niels
+        elif exercise["operation"] == "mod_subtraction.py":
             pass
         elif exercise["operation"] == "multiplication":
             pass
         elif exercise["operation"] == "reduction":
             pass
+
+        #Niels
         elif exercise["operation"] == "inversion":
             pass
 
