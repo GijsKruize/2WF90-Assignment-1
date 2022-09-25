@@ -1,7 +1,7 @@
 
-from helpers import radix_to_decimal
+from helpers import is_positive
 from reduction.mod_reduction import mod_reduction
-from int_addition import addition
+from add.int_addition import addition
 from subtraction.int_subtraction import subtraction
 
 
@@ -16,7 +16,7 @@ def mod_addition(radix, x, y, m):
         return x
 
     z_prime = addition(radix, x, y)
-    if (radix_to_decimal(radix, z_prime) < radix_to_decimal(radix, m)):
+    if is_positive(subtraction(radix, z_prime, m)):
         return mod_reduction(radix, z_prime, m)
 
     return subtraction(radix, z_prime, m)
